@@ -14,6 +14,7 @@ import com.vrsa9208.design.patterns.book.factory.dao.adapter.IDBAdapter;
 import com.vrsa9208.design.patterns.book.factory.dao.factory.DBFactory;
 import com.vrsa9208.design.patterns.book.factory.dao.factory.IDBFactory;
 import com.vrsa9208.design.patterns.book.factory.model.Product;
+import com.vrsa9208.design.patterns.book.factory.values.DBType;
 
 public class ProductDao {
 
@@ -24,6 +25,11 @@ public class ProductDao {
 	public ProductDao() {
 		IDBFactory dbFactory = new DBFactory();
 		dbAdapter = dbFactory.getDefaultDbAdapter();
+	}
+	
+	public ProductDao(DBType dbType) {
+		IDBFactory dbFactory = new DBFactory();
+		dbAdapter = dbFactory.getDbAdapter(dbType);
 	}
 
 	public List<Product> findAllProducts() {
